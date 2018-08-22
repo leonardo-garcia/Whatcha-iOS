@@ -1,0 +1,6 @@
+framework module Pods_Whatcha_ {
+  umbrella header "Pods-Whatcha!-umbrella.h"
+
+  export *
+  module * { export * }
+}
