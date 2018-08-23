@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B98633B43551F2FFE51FCB09 /* Pods_Whatcha_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F8B970378B2DEBA3A68E4F2 /* Pods_Whatcha_.framework */; };
 		C05A7043212F144700AA10DA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A7042212F144700AA10DA /* Network.swift */; };
+		C05A7045212F629C00AA10DA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A7044212F629C00AA10DA /* TabBarController.swift */; };
 		C0C8645A212E0D9C0026B6E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C86459212E0D9C0026B6E7 /* AppDelegate.swift */; };
 		C0C8645C212E0D9C0026B6E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8645B212E0D9C0026B6E7 /* ViewController.swift */; };
 		C0C86461212E0D9E0026B6E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0C86460212E0D9E0026B6E7 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		5F8B970378B2DEBA3A68E4F2 /* Pods_Whatcha_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Whatcha_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C2C4412CA2EFF6A31367C8 /* Pods-Whatcha!.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whatcha!.release.xcconfig"; path = "Pods/Target Support Files/Pods-Whatcha!/Pods-Whatcha!.release.xcconfig"; sourceTree = "<group>"; };
 		C05A7042212F144700AA10DA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		C05A7044212F629C00AA10DA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C0C86456212E0D9C0026B6E7 /* Whatcha!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Whatcha!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C86459212E0D9C0026B6E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0C8645B212E0D9C0026B6E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +53,30 @@
 				79C2C4412CA2EFF6A31367C8 /* Pods-Whatcha!.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C05A7046212F62B900AA10DA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C0C86471212E0FFF0026B6E7 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C05A7047212F62BF00AA10DA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				C05A7044212F629C00AA10DA /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		C05A7048212F6B2B00AA10DA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C0C8646F212E0FEA0026B6E7 /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		C0C8644D212E0D9C0026B6E7 = {
@@ -105,7 +131,8 @@
 		C0C8646D212E0FA30026B6E7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C0C86471212E0FFF0026B6E7 /* HomeViewController.swift */,
+				C05A7047212F62BF00AA10DA /* TabBar */,
+				C05A7046212F62B900AA10DA /* Home */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -113,7 +140,7 @@
 		C0C8646E212E0FAF0026B6E7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C0C8646F212E0FEA0026B6E7 /* HomeView.swift */,
+				C05A7048212F6B2B00AA10DA /* Home */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +263,7 @@
 				C0C86470212E0FEA0026B6E7 /* HomeView.swift in Sources */,
 				C0C8645C212E0D9C0026B6E7 /* ViewController.swift in Sources */,
 				C0C8645A212E0D9C0026B6E7 /* AppDelegate.swift in Sources */,
+				C05A7045212F629C00AA10DA /* TabBarController.swift in Sources */,
 				C0C86472212E0FFF0026B6E7 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
