@@ -11,7 +11,6 @@
 		C05A7043212F144700AA10DA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A7042212F144700AA10DA /* Network.swift */; };
 		C05A7045212F629C00AA10DA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A7044212F629C00AA10DA /* TabBarController.swift */; };
 		C0C8645A212E0D9C0026B6E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C86459212E0D9C0026B6E7 /* AppDelegate.swift */; };
-		C0C8645C212E0D9C0026B6E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8645B212E0D9C0026B6E7 /* ViewController.swift */; };
 		C0C86461212E0D9E0026B6E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0C86460212E0D9E0026B6E7 /* Assets.xcassets */; };
 		C0C86464212E0D9E0026B6E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0C86462212E0D9E0026B6E7 /* LaunchScreen.storyboard */; };
 		C0C86470212E0FEA0026B6E7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8646F212E0FEA0026B6E7 /* HomeView.swift */; };
@@ -26,7 +25,6 @@
 		C05A7044212F629C00AA10DA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C0C86456212E0D9C0026B6E7 /* Whatcha!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Whatcha!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C86459212E0D9C0026B6E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C0C8645B212E0D9C0026B6E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C0C86460212E0D9E0026B6E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0C86463212E0D9E0026B6E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0C86465212E0D9E0026B6E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 				C0C8646D212E0FA30026B6E7 /* Controllers */,
 				C0C8646C212E0F680026B6E7 /* Models */,
 				C0C86459212E0D9C0026B6E7 /* AppDelegate.swift */,
-				C0C8645B212E0D9C0026B6E7 /* ViewController.swift */,
 				C0C86460212E0D9E0026B6E7 /* Assets.xcassets */,
 				C0C86462212E0D9E0026B6E7 /* LaunchScreen.storyboard */,
 				C0C86465212E0D9E0026B6E7 /* Info.plist */,
@@ -261,7 +258,6 @@
 			files = (
 				C05A7043212F144700AA10DA /* Network.swift in Sources */,
 				C0C86470212E0FEA0026B6E7 /* HomeView.swift in Sources */,
-				C0C8645C212E0D9C0026B6E7 /* ViewController.swift in Sources */,
 				C0C8645A212E0D9C0026B6E7 /* AppDelegate.swift in Sources */,
 				C05A7045212F629C00AA10DA /* TabBarController.swift in Sources */,
 				C0C86472212E0FFF0026B6E7 /* HomeViewController.swift in Sources */,
