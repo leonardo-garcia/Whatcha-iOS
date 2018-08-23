@@ -17,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = HomeViewController()
+        let homeViewController = HomeViewController()
+        homeViewController.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "HomeIcon"), tag: 1)
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [homeViewController]
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         return true
     }
