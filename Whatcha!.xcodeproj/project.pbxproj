@@ -15,6 +15,12 @@
 		C0C86464212E0D9E0026B6E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0C86462212E0D9E0026B6E7 /* LaunchScreen.storyboard */; };
 		C0C86470212E0FEA0026B6E7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8646F212E0FEA0026B6E7 /* HomeView.swift */; };
 		C0C86472212E0FFF0026B6E7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C86471212E0FFF0026B6E7 /* HomeViewController.swift */; };
+		C0E8682321345ACC006FCCCA /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8682221345ACC006FCCCA /* HTTPMethod.swift */; };
+		C0E868262134687B006FCCCA /* HeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E868252134687B006FCCCA /* HeaderField.swift */; };
+		C0E8682821346995006FCCCA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8682721346995006FCCCA /* String.swift */; };
+		C0E8682A213470AC006FCCCA /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E86829213470AC006FCCCA /* Resource.swift */; };
+		C0E8682C21347173006FCCCA /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8682B21347173006FCCCA /* Media.swift */; };
+		C0E8682E213472E0006FCCCA /* DateReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8682D213472E0006FCCCA /* DateReference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +36,12 @@
 		C0C86465212E0D9E0026B6E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0C8646F212E0FEA0026B6E7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C0C86471212E0FFF0026B6E7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C0E8682221345ACC006FCCCA /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		C0E868252134687B006FCCCA /* HeaderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderField.swift; sourceTree = "<group>"; };
+		C0E8682721346995006FCCCA /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		C0E86829213470AC006FCCCA /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		C0E8682B21347173006FCCCA /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		C0E8682D213472E0006FCCCA /* DateReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateReference.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +125,7 @@
 		C0C8646B212E0F620026B6E7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C0E868242134682D006FCCCA /* Utility */,
 				C05A7042212F144700AA10DA /* Network.swift */,
 			);
 			path = Network;
@@ -121,6 +134,9 @@
 		C0C8646C212E0F680026B6E7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C0E86829213470AC006FCCCA /* Resource.swift */,
+				C0E8682B21347173006FCCCA /* Media.swift */,
+				C0E8682D213472E0006FCCCA /* DateReference.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -140,6 +156,16 @@
 				C05A7048212F6B2B00AA10DA /* Home */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C0E868242134682D006FCCCA /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				C0E868252134687B006FCCCA /* HeaderField.swift */,
+				C0E8682221345ACC006FCCCA /* HTTPMethod.swift */,
+				C0E8682721346995006FCCCA /* String.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		E3B1007288782CC69D2D581E /* Frameworks */ = {
@@ -257,10 +283,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05A7043212F144700AA10DA /* Network.swift in Sources */,
+				C0E868262134687B006FCCCA /* HeaderField.swift in Sources */,
 				C0C86470212E0FEA0026B6E7 /* HomeView.swift in Sources */,
+				C0E8682E213472E0006FCCCA /* DateReference.swift in Sources */,
+				C0E8682321345ACC006FCCCA /* HTTPMethod.swift in Sources */,
+				C0E8682C21347173006FCCCA /* Media.swift in Sources */,
 				C0C8645A212E0D9C0026B6E7 /* AppDelegate.swift in Sources */,
 				C05A7045212F629C00AA10DA /* TabBarController.swift in Sources */,
+				C0E8682821346995006FCCCA /* String.swift in Sources */,
 				C0C86472212E0FFF0026B6E7 /* HomeViewController.swift in Sources */,
+				C0E8682A213470AC006FCCCA /* Resource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
