@@ -13,7 +13,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let homeViewController = HomeViewController()
+        let homeViewController = HomeTableViewController()
         homeViewController.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "HomeIcon"), tag: 1)
         let viewControllerList = [homeViewController]
         viewControllers = viewControllerList.map { UINavigationController(rootViewController: $0) }

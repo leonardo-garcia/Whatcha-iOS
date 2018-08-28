@@ -8,15 +8,17 @@
 
 import Foundation
 
+typealias Json = [String: Any]
+
 class Network {
     
     /// Generic function designed to retrieve data from AnilistAPI
     ///
     /// - Parameters:
-    ///   - g: Type of the model object to be retrieved by the function
+    ///   - type: Type of the model object to be retrieved by the function
     ///   - settings: Configuration required from the API to gather information
     ///   - completion: Function that may receive the parsed object
-    static func fetch<G: Decodable>(g: G.Type, settings: [String: Any], completion: @escaping (G?) -> Void) {
+    static func fetch<G: Decodable>(type: G.Type, settings: [String: Any], completion: @escaping (G?) -> Void) {
         guard let url = URL(string: .aniListUrl) else { completion(nil); return }
         var urlRequest = URLRequest(url: url)
         
@@ -41,9 +43,11 @@ class Network {
             }
             
             guard let data = data else { completion(nil); return }
+          
             if let string = String(data: data, encoding: .utf8) {
                 print(string)
             }
+            
             if let modelObject = try? JSONDecoder().decode(G.self, from: data) {
                 completion(modelObject)
                 return
@@ -56,5 +60,4 @@ class Network {
         }
         task.resume()
     }
-    
 }

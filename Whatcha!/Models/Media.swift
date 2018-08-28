@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Model used to store media information of an specific Anime/Manga
 struct Media: Codable {
     let id: Int
     let title: Title
@@ -16,9 +17,10 @@ struct Media: Codable {
     let format: String
     let startDate: DateReference
     let genres: [String]
-    let averageScore: Int
-    let episodes: Int
+    let averageScore: Int?
+    let episodes: Int?
     let coverImage: CoverImageLink
+    let bannerImageLink: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,25 +33,17 @@ struct Media: Codable {
         case averageScore
         case episodes
         case coverImage
+        case bannerImageLink = "bannerImage"
     }
 }
 
+/// Title of a specific element
 struct Title: Codable {
     let english: String?
-    let native: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case english
-        case native
-    }
+    let romaji: String?
 }
 
 struct CoverImageLink: Codable {
     let large: String
     let medium: String
-    
-    enum CodingKeys: String, CodingKey {
-        case large
-        case medium
-    }
 }

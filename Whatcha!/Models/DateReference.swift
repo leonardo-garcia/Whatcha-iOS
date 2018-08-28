@@ -8,14 +8,9 @@
 
 import Foundation
 
+/// Model used for storing Date according API reference
 struct DateReference: Codable {
-    let year: Int
-    let month: Int
-    let day: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case year
-        case month
-        case day
-    }
+    let year: Int?
+    let month: Int?
+    let day: Int?
 }
