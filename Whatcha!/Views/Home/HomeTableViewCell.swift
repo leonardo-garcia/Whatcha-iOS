@@ -23,13 +23,18 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     func setupViews() {
-        self.backgroundColor = UIColor.groupTableViewBackground
+        backgroundColor = .groupTableViewBackground
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 100.0, height: 160.0)
+        layout.itemSize = CGSize(width: 100.0, height: 180.0)
+        layout.minimumLineSpacing = 0
+        
         collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor.clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
+        
         self.addSubview(collectionView)
     }
     

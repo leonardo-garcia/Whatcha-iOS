@@ -41,10 +41,9 @@ class QueryBuilder {
         return ["query": query, "variables": variables]
     }
     
-    static func page(number: Int, perPage: Int, type: String, sort: String) -> Json {
-        // TODO: Get parameters through function
+    static func page(number: Int, perPage: Int, type: MediaType, genre: Genre, sort: MediaSort) -> Json {
         let query = """
-            query ($page: Int, $perPage: Int) {
+            query ($page: Int, $perPage: Int, $type: MediaType, $genre: String $sort: [MediaSort]) {
                 Page(page: $page, perPage: $perPage) {
                     pageInfo {
                       total
@@ -53,7 +52,7 @@ class QueryBuilder {
                       lastPage
                       hasNextPage
                     }
-                    media(type: ANIME sort: [TITLE_ENGLISH]) {
+                    media(type: $type genre: $genre sort: $sort) {
                       id
                       type
                       status
@@ -79,7 +78,13 @@ class QueryBuilder {
                   }
             }
         """
-        let variables = ["page": number, "perPage": perPage]
+        let variables: Json = [
+            "page": number,
+            "perPage": perPage,
+            "type": type.rawValue,
+            "genre": genre.rawValue,
+            "sort": sort.rawValue,
+            ]
         return ["query": query, "variables": variables]
     }
 }

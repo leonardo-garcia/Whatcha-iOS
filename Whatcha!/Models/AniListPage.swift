@@ -8,8 +8,10 @@
 
 import Foundation
 
+/// Main model for retrieving list of elements from API
 struct AniListPage: Codable {
-    let data: PageResource
+    let data: PageResource?
+    let errors: [DataError]?
 }
 
 struct PageResource: Codable {

@@ -44,9 +44,9 @@ class Network {
             
             guard let data = data else { completion(nil); return }
           
-            if let string = String(data: data, encoding: .utf8) {
-                print(string)
-            }
+//            if let string = String(data: data, encoding: .utf8) {
+//                print(string)
+//            }
             
             if let modelObject = try? JSONDecoder().decode(G.self, from: data) {
                 completion(modelObject)

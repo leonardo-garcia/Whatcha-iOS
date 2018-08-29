@@ -10,6 +10,11 @@
 		B98633B43551F2FFE51FCB09 /* Pods_Whatcha_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F8B970378B2DEBA3A68E4F2 /* Pods_Whatcha_.framework */; };
 		C05A7043212F144700AA10DA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A7042212F144700AA10DA /* Network.swift */; };
 		C05A7045212F629C00AA10DA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A7044212F629C00AA10DA /* TabBarController.swift */; };
+		C093C65D2137140600C7C1AC /* MediaSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C093C65C2137140600C7C1AC /* MediaSort.swift */; };
+		C093C65F2137150C00C7C1AC /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C093C65E2137150C00C7C1AC /* MediaType.swift */; };
+		C093C6612137235D00C7C1AC /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C093C6602137235D00C7C1AC /* Genre.swift */; };
+		C093C66321372F6C00C7C1AC /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C093C66221372F6C00C7C1AC /* HomeData.swift */; };
+		C093C66521373FB600C7C1AC /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C093C66421373FB600C7C1AC /* DataError.swift */; };
 		C0A86B5221359A2F00D94C5C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A86B5121359A2F00D94C5C /* HomeTableViewCell.swift */; };
 		C0A86B5421359FB300D94C5C /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A86B5321359FB300D94C5C /* HomeCollectionViewCell.swift */; };
 		C0C8645A212E0D9C0026B6E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C86459212E0D9C0026B6E7 /* AppDelegate.swift */; };
@@ -35,6 +40,11 @@
 		79C2C4412CA2EFF6A31367C8 /* Pods-Whatcha!.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whatcha!.release.xcconfig"; path = "Pods/Target Support Files/Pods-Whatcha!/Pods-Whatcha!.release.xcconfig"; sourceTree = "<group>"; };
 		C05A7042212F144700AA10DA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		C05A7044212F629C00AA10DA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C093C65C2137140600C7C1AC /* MediaSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSort.swift; sourceTree = "<group>"; };
+		C093C65E2137150C00C7C1AC /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
+		C093C6602137235D00C7C1AC /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		C093C66221372F6C00C7C1AC /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
+		C093C66421373FB600C7C1AC /* DataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
 		C0A86B5121359A2F00D94C5C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		C0A86B5321359FB300D94C5C /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		C0C86456212E0D9C0026B6E7 /* Whatcha!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Whatcha!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +113,17 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		C093C65B213713E100C7C1AC /* AniList */ = {
+			isa = PBXGroup;
+			children = (
+				C0E8682F2134A091006FCCCA /* QueryBuilder.swift */,
+				C093C65C2137140600C7C1AC /* MediaSort.swift */,
+				C093C65E2137150C00C7C1AC /* MediaType.swift */,
+				C093C6602137235D00C7C1AC /* Genre.swift */,
+			);
+			path = AniList;
+			sourceTree = "<group>";
+		};
 		C0C8644D212E0D9C0026B6E7 = {
 			isa = PBXGroup;
 			children = (
@@ -139,9 +160,9 @@
 		C0C8646B212E0F620026B6E7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C093C65B213713E100C7C1AC /* AniList */,
 				C0E868242134682D006FCCCA /* Utility */,
 				C05A7042212F144700AA10DA /* Network.swift */,
-				C0E8682F2134A091006FCCCA /* QueryBuilder.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -155,6 +176,8 @@
 				C0E868312134A4BD006FCCCA /* Page.swift */,
 				C0E868332134A57D006FCCCA /* PageInfo.swift */,
 				C0E868352134A89C006FCCCA /* AniListPage.swift */,
+				C093C66421373FB600C7C1AC /* DataError.swift */,
+				C093C66221372F6C00C7C1AC /* HomeData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -302,14 +325,19 @@
 			files = (
 				C0E868362134A89C006FCCCA /* AniListPage.swift in Sources */,
 				C0E868342134A57D006FCCCA /* PageInfo.swift in Sources */,
+				C093C65D2137140600C7C1AC /* MediaSort.swift in Sources */,
 				C05A7043212F144700AA10DA /* Network.swift in Sources */,
 				C0E868322134A4BD006FCCCA /* Page.swift in Sources */,
 				C0E868262134687B006FCCCA /* HeaderField.swift in Sources */,
 				C0C86470212E0FEA0026B6E7 /* HomeView.swift in Sources */,
 				C0E8682E213472E0006FCCCA /* DateReference.swift in Sources */,
+				C093C66521373FB600C7C1AC /* DataError.swift in Sources */,
 				C0E8682321345ACC006FCCCA /* HTTPMethod.swift in Sources */,
 				C0E8682C21347173006FCCCA /* Media.swift in Sources */,
 				C0E868302134A091006FCCCA /* QueryBuilder.swift in Sources */,
+				C093C66321372F6C00C7C1AC /* HomeData.swift in Sources */,
+				C093C6612137235D00C7C1AC /* Genre.swift in Sources */,
+				C093C65F2137150C00C7C1AC /* MediaType.swift in Sources */,
 				C0A86B5421359FB300D94C5C /* HomeCollectionViewCell.swift in Sources */,
 				C0C8645A212E0D9C0026B6E7 /* AppDelegate.swift in Sources */,
 				C05A7045212F629C00AA10DA /* TabBarController.swift in Sources */,

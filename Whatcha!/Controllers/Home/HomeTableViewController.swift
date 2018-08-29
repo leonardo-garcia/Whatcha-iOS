@@ -9,12 +9,39 @@
 import UIKit
 
 class HomeTableViewController: UITableViewController {
+    
+    var homeData = HomeData() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Home"
-        self.tableView.rowHeight = 175
+        
+        self.tableView.rowHeight = 180
         self.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: .tableCellIdentifier)
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        for genre in homeData.genres {
+            Network.fetch(type: AniListPage.self,
+                          settings: QueryBuilder.page(number: 1,
+                                                      perPage: 10,
+                                                      type: .anime,
+                                                      genre: genre,
+                                                      sort: .popularityDescendent)) { [weak self] anipage in
+                if let anipage = anipage, let media = anipage.data?.page.media {
+                    print(media)
+                    DispatchQueue.main.async {
+                        self?.homeData.mediaElements[genre.rawValue] = media
+                        if genre == self?.homeData.genres.last {
+                            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -26,34 +53,40 @@ extension HomeTableViewController {
         tableCell.collectionView.dataSource = self
         tableCell.collectionView.delegate = self
         tableCell.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: .collectionCellIdentifier)
+        tableCell.collectionView.reloadData()
+        tableCell.collectionView.tag = indexPath.section
         return tableCell
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return homeData.genres.count
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return homeData.genres[section].rawValue
+    }
+
 }
 
 extension HomeTableViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        guard let elementsInSection = homeData.mediaElements[homeData.genres[collectionView.tag].rawValue]?.count else {
+            return 0
+        }
+        return elementsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell: HomeCollectionViewCell =
                 collectionView.dequeueReusableCell(withReuseIdentifier: .collectionCellIdentifier, for: indexPath)
                 as? HomeCollectionViewCell else { return UICollectionViewCell() }
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = .red
-        } else {
-            cell.backgroundColor = .yellow
-        }
         return cell
     }
+    
 }
 
 extension String {
