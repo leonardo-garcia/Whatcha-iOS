@@ -12,8 +12,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "narutoshippuden")
-        imageView.contentMode = .scaleAspectFit
+        imageView.image = #imageLiteral(resourceName: "Empty")
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -50,5 +50,26 @@ class HomeCollectionViewCell: UICollectionViewCell {
             
         ]
         NSLayoutConstraint.activate(contraints)
+    }
+    
+    func setupCell(with media: Media) {
+        if let englishTitle = media.title.english {
+            titleLabel.text = englishTitle
+        } else if let romajiTitle = media.title.romaji {
+            titleLabel.text = romajiTitle
+        } else {
+            titleLabel.text = " - "
+        }
+        
+        let imageUrl = media.coverImageLink.medium
+        
+        Network.fetch(type: Data.self, url: imageUrl, httpMethod: .get, settings: [:]) { [weak self] (data) in
+            if let data = data, let image = UIImage(data: data) {
+                media.coverImage = image
+                DispatchQueue.main.async {
+                    self?.imageView.image = image
+                }
+            }
+        }
     }
 }

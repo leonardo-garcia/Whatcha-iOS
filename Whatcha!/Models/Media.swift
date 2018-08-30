@@ -6,10 +6,10 @@
 //  Copyright © 2018 Leonardo Garcia. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Model used to store media information of an specific Anime/Manga
-struct Media: Codable {
+class Media: Codable {
     let id: Int
     let title: Title
     let type: String
@@ -19,8 +19,9 @@ struct Media: Codable {
     let genres: [String]
     let averageScore: Int?
     let episodes: Int?
-    let coverImage: CoverImageLink
+    let coverImageLink: CoverImageLink
     let bannerImageLink: String?
+    var coverImage: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -32,8 +33,22 @@ struct Media: Codable {
         case genres
         case averageScore
         case episodes
-        case coverImage
+        case coverImageLink = "coverImage"
         case bannerImageLink = "bannerImage"
+    }
+    
+    init() {
+        id = 0
+        title = Title(english: nil, romaji: nil)
+        type = ""
+        status = ""
+        format = ""
+        startDate = DateReference(year: nil, month: nil, day: nil)
+        genres = []
+        averageScore = nil
+        episodes = nil
+        coverImageLink = CoverImageLink(large: "", medium: "")
+        bannerImageLink = nil
     }
 }
 

@@ -18,9 +18,12 @@ class Network {
     ///   - type: Type of the model object to be retrieved by the function
     ///   - settings: Configuration required from the API to gather information
     ///   - completion: Function that may receive the parsed object
-    static func fetch<G: Decodable>(type: G.Type, settings: [String: Any], completion: @escaping (G?) -> Void) {
-        guard let url = URL(string: .aniListUrl) else { completion(nil); return }
-        var urlRequest = URLRequest(url: url)
+    static func fetch<G: Decodable>(type: G.Type, url: String? = nil, httpMethod: HTTPMethod = .post, settings: [String: Any], completion: @escaping (G?) -> Void) {
+       
+        let urlString = url ?? .aniListUrl
+        
+        guard let urlObject = URL(string: urlString) else { completion(nil); return }
+        var urlRequest = URLRequest(url: urlObject)
         
         do {
             let body = try JSONSerialization.data(withJSONObject: settings, options: .prettyPrinted)
@@ -31,7 +34,7 @@ class Network {
             completion(nil)
             return
         }
-        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.httpMethod = httpMethod.rawValue
         urlRequest.setValue(.contentJson, forHTTPHeaderField: HeaderField.accept.rawValue)
         urlRequest.setValue(.contentJson, forHTTPHeaderField: HeaderField.contentType.rawValue)
         
@@ -43,10 +46,12 @@ class Network {
             }
             
             guard let data = data else { completion(nil); return }
-          
-//            if let string = String(data: data, encoding: .utf8) {
-//                print(string)
-//            }
+            
+            if type == Data.self {
+                guard let modelObject = data as? G else { completion(nil); return }
+                completion(modelObject)
+                return
+            }
             
             if let modelObject = try? JSONDecoder().decode(G.self, from: data) {
                 completion(modelObject)

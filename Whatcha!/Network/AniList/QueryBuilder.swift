@@ -83,7 +83,7 @@ class QueryBuilder {
             "perPage": perPage,
             "type": type.rawValue,
             "genre": genre.rawValue,
-            "sort": sort.rawValue,
+            "sort": sort.rawValue
             ]
         return ["query": query, "variables": variables]
     }
