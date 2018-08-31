@@ -10,22 +10,38 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
-    var homeData = HomeData() {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+    var homeData = HomeData()
+    lazy var loadingView: UIView = {
+        let view = UIView(frame: self.view.bounds)
+        view.backgroundColor = .black
+        return view
+    }()
+    
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    
+    let dispatchGroup = DispatchGroup()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Home"
         
+        tableView.tableHeaderView = loadingView
+        activityIndicator.startAnimating()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.addSubview(activityIndicator)
+        let contraints = [
+            activityIndicator.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(contraints)
+        
         self.tableView.rowHeight = 190
         self.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: .tableCellIdentifier)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        var genreLoadedCount = 0
         for genre in homeData.genres {
+            
+            dispatchGroup.enter()
             Network.fetch(type: AniListPage.self,
                           settings: QueryBuilder.page(number: 1,
                                                       perPage: 20,
@@ -35,17 +51,22 @@ class HomeTableViewController: UITableViewController {
                 if let anipage = anipage, let media = anipage.data?.page.media {
                     print("fetched info of \(genre)")
                     if let weakSelf = self {
-                        DispatchQueue.main.async {
-                            weakSelf.homeData.mediaElements[genre.rawValue] = media
-                            genreLoadedCount += 1
-                            if genreLoadedCount == weakSelf.homeData.genres.count {
-                                print(genre)
-                                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                            }
-                        }
+                        
+                        weakSelf.homeData.mediaElements[genre.rawValue] = media
+                        weakSelf.dispatchGroup.leave()
+                        
+                    } else {
+                        fatalError("A reference to self is needed to fill Home data")
                     }
                 }
             }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            self.activityIndicator.stopAnimating()
+            self.tableView.tableHeaderView = nil
+            self.tableView.reloadData()
         }
     }
 
@@ -60,8 +81,8 @@ extension HomeTableViewController {
         tableCell.collectionView.dataSource = self
         tableCell.collectionView.delegate = self
         tableCell.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: .collectionCellIdentifier)
-        tableCell.collectionView.reloadData()
         tableCell.collectionView.tag = indexPath.section
+        tableCell.collectionView.reloadData()
         return tableCell
     }
     

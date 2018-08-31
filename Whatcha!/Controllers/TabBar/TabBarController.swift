@@ -13,10 +13,20 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBar.barTintColor = .black
+        
         let homeViewController = HomeTableViewController()
         homeViewController.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "HomeIcon"), tag: 1)
         let viewControllerList = [homeViewController]
-        viewControllers = viewControllerList.map { UINavigationController(rootViewController: $0) }
+        viewControllers = viewControllerList.map {
+            
+            let navigationController = UINavigationController(rootViewController: $0)
+            navigationController.navigationBar.barStyle = .blackTranslucent
+
+            navigationController.navigationBar.barTintColor = .black
+            return navigationController
+            
+        }
         
     }
 }
