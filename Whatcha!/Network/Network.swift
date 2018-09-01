@@ -7,58 +7,64 @@
 //
 
 import Foundation
+import UIKit
 
 typealias Json = [String: Any]
 
 class Network {
-    
-    /// Generic function designed to retrieve data from AnilistAPI
+
+    /// Generic function designed to retrieve and parse data/object from any URL (or default AniListAPI)
     ///
     /// - Parameters:
     ///   - type: Type of the model object to be retrieved by the function
+    ///   - url: String of the resource location
+    ///   - httpMethod: method to be used by the network request (default: .post)
     ///   - settings: Configuration required from the API to gather information
     ///   - completion: Function that may receive the parsed object
-    static func fetch<G: Decodable>(type: G.Type, url: String? = nil, httpMethod: HTTPMethod = .post, settings: [String: Any], completion: @escaping (G?) -> Void) {
+    static func fetch<G: Decodable>(type: G.Type,
+                                    url: String? = nil,
+                                    httpMethod: HTTPMethod = .post,
+                                    settings: [String: Any]? = nil,
+                                    completion: @escaping (_ result: Result<G>) -> Void) {
        
         let urlString = url ?? .aniListUrl
         
-        guard let urlObject = URL(string: urlString) else { completion(nil); return }
+        guard let urlObject = URL(string: urlString) else { completion(Result.fail(NetworkError.badURL)); return }
         var urlRequest = URLRequest(url: urlObject)
         
-        do {
-            let body = try JSONSerialization.data(withJSONObject: settings, options: .prettyPrinted)
-            urlRequest.httpBody = body
-        } catch {
-            //TODO: Handle errors
-            print("Could not set HTTP body")
-            completion(nil)
-            return
+        if let settings = settings {
+            do {
+                let body = try JSONSerialization.data(withJSONObject: settings, options: .prettyPrinted)
+                urlRequest.httpBody = body
+            } catch {
+                completion(Result.fail(NetworkError.wrongBodyFormat))
+                return
+            }
         }
+        
         urlRequest.httpMethod = httpMethod.rawValue
         urlRequest.setValue(.contentJson, forHTTPHeaderField: HeaderField.accept.rawValue)
         urlRequest.setValue(.contentJson, forHTTPHeaderField: HeaderField.contentType.rawValue)
         
         let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             if let error = error {
-                print(error)
-                completion(nil)
+                completion(Result.fail(error))
                 return
             }
             
-            guard let data = data else { completion(nil); return }
+            guard let data = data else { completion(Result.fail(NetworkError.noDataFound)); return }
             
             if type == Data.self {
-                guard let modelObject = data as? G else { completion(nil); return }
-                completion(modelObject)
+                guard let modelObject = data as? G else { completion(Result.fail(NetworkError.failedParsing)); return }
+                completion(Result.object(modelObject))
                 return
             }
             
             if let modelObject = try? JSONDecoder().decode(G.self, from: data) {
-                completion(modelObject)
+                completion(Result.object(modelObject))
                 return
             } else {
-                print("Could not decode Object")
-                completion(nil)
+                completion(Result.fail(NetworkError.failedParsing))
                 return
             }
             

@@ -10,33 +10,27 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
+    // MARK: - Object Properties
     var homeData = HomeData()
+    var imageManager = ImageManager()
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    let dispatchGroup = DispatchGroup()
+    
     lazy var loadingView: UIView = {
         let view = UIView(frame: self.view.bounds)
         view.backgroundColor = .black
         return view
     }()
     
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-    
-    let dispatchGroup = DispatchGroup()
-
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Home"
         
+        tableView.backgroundColor = .black
         tableView.tableHeaderView = loadingView
-        activityIndicator.startAnimating()
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        loadingView.addSubview(activityIndicator)
-        let contraints = [
-            activityIndicator.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor)
-        ]
-        NSLayoutConstraint.activate(contraints)
-        
-        self.tableView.rowHeight = 190
-        self.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: .tableCellIdentifier)
+        tableView.rowHeight = 190
+        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: .tableCellIdentifier)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         for genre in homeData.genres {
@@ -47,17 +41,21 @@ class HomeTableViewController: UITableViewController {
                                                       perPage: 20,
                                                       type: .anime,
                                                       genre: genre,
-                                                      sort: .popularityDescendent)) { [weak self] anipage in
-                if let anipage = anipage, let media = anipage.data?.page.media {
-                    print("fetched info of \(genre)")
-                    if let weakSelf = self {
-                        
-                        weakSelf.homeData.mediaElements[genre.rawValue] = media
+                                                      sort: .popularityDescendent)) { [weak self] result in
+                if let weakSelf = self {
+                    switch result {
+                    case .object(let anipage):
+                        if let media = anipage.data?.page.media {
+                            weakSelf.homeData.mediaElements[genre.rawValue] = media
+                            weakSelf.dispatchGroup.leave()
+                        }
+                    case .fail(let error):
+                        //Show alert
                         weakSelf.dispatchGroup.leave()
-                        
-                    } else {
-                        fatalError("A reference to self is needed to fill Home data")
+                        print(error)
                     }
+                } else {
+                    fatalError("A reference to self is needed to fill Home data")
                 }
             }
         }
@@ -68,6 +66,17 @@ class HomeTableViewController: UITableViewController {
             self.tableView.tableHeaderView = nil
             self.tableView.reloadData()
         }
+    }
+    
+    private func viewSetup() {
+        activityIndicator.startAnimating()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.addSubview(activityIndicator)
+        let contraints = [
+            activityIndicator.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(contraints)
     }
 
 }
@@ -114,7 +123,7 @@ extension HomeTableViewController: UICollectionViewDataSource, UICollectionViewD
                 collectionView.dequeueReusableCell(withReuseIdentifier: .collectionCellIdentifier, for: indexPath)
                 as? HomeCollectionViewCell else { return UICollectionViewCell() }
         if let media = homeData.mediaElements[homeData.genres[collectionView.tag].rawValue]?[indexPath.row] {
-            cell.setupCell(with: media)
+            cell.setupCell(with: media, imageManager: imageManager)
         }
         return cell
     }

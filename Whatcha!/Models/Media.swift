@@ -21,7 +21,6 @@ class Media: Codable {
     let episodes: Int?
     let coverImageLink: CoverImageLink
     let bannerImageLink: String?
-    var coverImage: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case id

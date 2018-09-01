@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Model used to handle necesary data on Home's CollectionViews and TableView
 struct HomeData {
     let genres: [Genre]
     var mediaElements: [String: [Media]]

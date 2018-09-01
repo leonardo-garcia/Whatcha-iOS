@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// AniList specification of the media type
 enum MediaType: String {
     case anime = "ANIME"
     case manga = "MANGA"

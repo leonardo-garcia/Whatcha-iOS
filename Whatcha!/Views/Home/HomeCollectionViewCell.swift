@@ -10,6 +10,29 @@ import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Custom CollectionView Properties
+    var media = Media() {
+        didSet {
+            if let englishTitle = media.title.english {
+                titleLabel.text = englishTitle
+            } else if let romajiTitle = media.title.romaji {
+                titleLabel.text = romajiTitle
+            } else {
+                titleLabel.text = " - "
+            }
+        }
+    }
+    
+    var coverImage: UIImage? {
+        didSet {
+            if let image = coverImage {
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                }
+            }
+        }
+    }
+    
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "Empty")
@@ -22,10 +45,13 @@ class HomeCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Title"
         label.textAlignment = .center
+        label.textColor = .white
+        label.font = .boldSystemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
@@ -37,6 +63,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Views' Setup
     func setupContrains() {
         let contraints = [
             imageView.topAnchor.constraint(equalTo: topAnchor),
@@ -52,23 +79,16 @@ class HomeCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate(contraints)
     }
     
-    func setupCell(with media: Media) {
-        if let englishTitle = media.title.english {
-            titleLabel.text = englishTitle
-        } else if let romajiTitle = media.title.romaji {
-            titleLabel.text = romajiTitle
-        } else {
-            titleLabel.text = " - "
-        }
+    func setupCell(with media: Media, imageManager: ImageManager) {
         
+        self.media = media
         let imageUrl = media.coverImageLink.medium
         
-        Network.fetch(type: Data.self, url: imageUrl, httpMethod: .get, settings: [:]) { [weak self] (data) in
-            if let data = data, let image = UIImage(data: data) {
-                media.coverImage = image
-                DispatchQueue.main.async {
-                    self?.imageView.image = image
-                }
+        imageManager.getCachedImage(for: imageUrl) { [weak self] image in
+            if let image = image {
+                self?.coverImage = image
+            } else {
+                self?.coverImage = #imageLiteral(resourceName: "Empty")
             }
         }
     }

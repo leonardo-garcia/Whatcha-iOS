@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// AniList options to sort media queries
 enum MediaSort: String {
     case id = "ID"
     case idDescendent = "ID_DESC"

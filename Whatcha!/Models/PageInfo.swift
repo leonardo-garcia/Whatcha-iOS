@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Model that contains important info of Page object brough by the API reference
 struct PageInfo: Codable {
     let currentPage: Int
     let lastPage: Int

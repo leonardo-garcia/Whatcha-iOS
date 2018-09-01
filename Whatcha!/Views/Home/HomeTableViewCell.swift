@@ -12,6 +12,7 @@ class HomeTableViewCell: UITableViewCell {
     
     var collectionView: UICollectionView!
     
+    // MARK: - Initializers
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -22,6 +23,7 @@ class HomeTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Views' Setup
     func setupViews() {
         backgroundColor = .groupTableViewBackground
         
@@ -31,7 +33,7 @@ class HomeTableViewCell: UITableViewCell {
         layout.minimumLineSpacing = 10
         
         collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor.clear
+        collectionView.backgroundColor = .black
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         

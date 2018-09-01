@@ -8,6 +8,7 @@
 
 import Foundation
 
+// AniList Genre type
 enum Genre: String {
     case action = "Action"
     case adventure = "Adventure"
