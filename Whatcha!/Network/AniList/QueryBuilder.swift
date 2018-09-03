@@ -9,6 +9,11 @@
 import Foundation
 
 class QueryBuilder {
+    
+    /// Builds a query ready to use to retrieve an Anime element info
+    ///
+    /// - Parameter id: Identifier of the desired anime
+    /// - Returns: [String: Any] Object that contains API specified structure
     static func anime(id: Int) -> Json {
         let query = """
             query ($id: Int) {
@@ -41,6 +46,16 @@ class QueryBuilder {
         return ["query": query, "variables": variables]
     }
     
+    /// Builds a query ready to use to retrieve the list of anime elements
+    /// designated by the parameters specified
+    ///
+    /// - Parameters:
+    ///   - number: Page number
+    ///   - perPage: Number of elements per page
+    ///   - type: Type of the elements to be retrieved
+    ///   - genre: Genre of the content retrieved
+    ///   - sort: Options to sort the required elements
+    /// - Returns: [String: Any] Object that contains API specified structure
     static func page(number: Int, perPage: Int, type: MediaType, genre: Genre, sort: MediaSort) -> Json {
         let query = """
             query ($page: Int, $perPage: Int, $type: MediaType, $genre: String $sort: [MediaSort]) {

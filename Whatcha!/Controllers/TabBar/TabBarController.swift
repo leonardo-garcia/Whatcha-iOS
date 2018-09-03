@@ -19,11 +19,10 @@ class TabBarController: UITabBarController {
         let homeViewController = HomeTableViewController(style: .grouped)
         homeViewController.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "HomeIcon"), tag: 1)
         let viewControllerList = [homeViewController]
+        
         viewControllers = viewControllerList.map {
-            
             let navigationController = UINavigationController(rootViewController: $0)
             navigationController.navigationBar.barStyle = .blackTranslucent
-
             navigationController.navigationBar.barTintColor = .defaultColor
             return navigationController
         }
