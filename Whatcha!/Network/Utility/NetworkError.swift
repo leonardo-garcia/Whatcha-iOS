@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// Enum used to specify a problem found when making a request
 enum NetworkError: Error {
     case badURL

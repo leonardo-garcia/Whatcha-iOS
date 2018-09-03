@@ -25,7 +25,7 @@ class HomeTableViewCell: UITableViewCell {
     
     // MARK: - Views' Setup
     func setupViews() {
-        backgroundColor = .groupTableViewBackground
+        backgroundColor = .defaultColor
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -33,9 +33,10 @@ class HomeTableViewCell: UITableViewCell {
         layout.minimumLineSpacing = 10
         
         collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        collectionView.backgroundColor = .black
+        collectionView.backgroundColor = .defaultColor
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: .collectionCellIdentifier)
         
         self.addSubview(collectionView)
     }
@@ -43,8 +44,8 @@ class HomeTableViewCell: UITableViewCell {
     func setupContraints() {
         let constraints = [
             collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)

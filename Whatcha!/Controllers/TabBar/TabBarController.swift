@@ -13,9 +13,10 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.barTintColor = .black
+        tabBar.barTintColor = .defaultColor
+        tabBar.tintColor = .defaultFontColor
         
-        let homeViewController = HomeTableViewController()
+        let homeViewController = HomeTableViewController(style: .grouped)
         homeViewController.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "HomeIcon"), tag: 1)
         let viewControllerList = [homeViewController]
         viewControllers = viewControllerList.map {
@@ -23,9 +24,8 @@ class TabBarController: UITabBarController {
             let navigationController = UINavigationController(rootViewController: $0)
             navigationController.navigationBar.barStyle = .blackTranslucent
 
-            navigationController.navigationBar.barTintColor = .black
+            navigationController.navigationBar.barTintColor = .defaultColor
             return navigationController
-            
         }
         
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Enum used to determine a operation status outcome
+/// Enum used to determine an operation status outcome
 enum Result<T> {
     case object(T)
     case fail(Error)

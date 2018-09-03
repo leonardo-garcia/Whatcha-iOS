@@ -18,5 +18,5 @@ enum Genre: String {
     case sciFi = "Sci-Fi"
     case music = "Music"
     case romance = "Romance"
-    case mistery = "Mystery"
+    case mystery = "Mystery"
 }

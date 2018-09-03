@@ -33,10 +33,11 @@ class HomeCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "Empty")
         imageView.contentMode = .scaleToFill
+        imageView.layer.cornerRadius = 3
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -45,7 +46,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Title"
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .defaultFontColor
         label.font = .boldSystemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -80,7 +81,6 @@ class HomeCollectionViewCell: UICollectionViewCell {
     }
     
     func setupCell(with media: Media, imageManager: ImageManager) {
-        
         self.media = media
         let imageUrl = media.coverImageLink.medium
         
